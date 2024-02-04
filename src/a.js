@@ -32,14 +32,14 @@ const sendSongDataToBackend = (data) => {
 };
 
 const App = () => {
-  const songid = "6XQHlsNu6so4PdglFkJQRJ";
-  const accessToken = "BQDzF9Q7AniTz02uG1-zYbTw95RvEKjuK5XHdu1QRdmNH_efK-MTtxwRfSjnllSd5l7cG6aunwmGtnazgNnWjIs5yTDoByQuqTb1IuHHnNjYp33K8Jc";
+  const songid = "6ECucSdJeJmSm3k1k3Vumv";
+  const accessToken = "BQAVQAzCB78djbmnmIPhkArNRLM4j9qNAb-t1hmTX_uzIQvp8X3uPpNdrza9UP8_FmBtO9z1FqbMj_cAeCtOvCbQLNHpjb0BirqUsmbCa9jbHiColds";
   const [songData, setSongData] = useState(null);
   const [songtrackData, setSongtrackData] = useState(null);
   const [backgroundColor, setBackgroundColor] = useState("");
 
   useEffect(() => {
-    fetch(  
+    fetch(
       `https://api.spotify.com/v1/audio-features/${songid}`,
       {
         headers: {
@@ -92,11 +92,9 @@ const App = () => {
   }, [accessToken]);
 
   return (
-    <div className= {`flex items-center justify-center h-screen bg-${backgroundColor}-500 rounded-md p-4`}>
-     <div className="">
-     <div className="rounded-md p-4 bg-gray-200" >
+    <div className={`bg-${backgroundColor}-500`}>
       {songData ? (
-        <div className="flex items-center justify-center text-3xl space-x-6 rounded-md">
+        <div className="items-center justify-center text-3xl">
           <div>Danceability: {songData.danceability}</div>
           <div>Loudness: {songData.loudness}</div>
           <div>Energy: {songData.energy}</div>
@@ -105,15 +103,13 @@ const App = () => {
         <p>Loading...</p>
       )}
       {songtrackData ? (
-        <div className="flex items-center justify-center py-10">
-          <div className=" bg-blue-400 rounded-lg p-4">Song Name: {songtrackData.name}</div>
+        <div>
+          <div>Song Name: {songtrackData.name}</div>
           {/* Add more track data here if needed */}
         </div>
       ) : (
         <p>Loading...</p>
       )}
-    </div>
-     </div>
     </div>
   );
 };
